@@ -83,20 +83,9 @@ export const site = {
     { href: "/menu", label: "Menu" },
     { href: "/dress-code", label: "Dress Code", shortLabel: "Dress" },
     { href: "/hotel-venue", label: "Hotel / Venue", shortLabel: "Hotel" },
+    { href: "/gallery", label: "Photos" },
     { href: "/memory-wall", label: "Memory Wall", shortLabel: "Memories" },
   ] satisfies NavLink[],
-
-  /** Home page photo marquee. Add `src` paths (e.g. "/gallery/usha-1.jpg") when ready. */
-  homeMarquee: [
-    { alt: "Usha portrait 1", size: "md" as const },
-    { alt: "Usha portrait 2", size: "lg" as const },
-    { alt: "Usha portrait 3", size: "sm" as const },
-    { alt: "Usha portrait 4", size: "md" as const },
-    { alt: "Usha portrait 5", size: "lg" as const },
-    { alt: "Usha portrait 6", size: "sm" as const },
-    { alt: "Usha portrait 7", size: "md" as const },
-    { alt: "Usha portrait 8", size: "lg" as const },
-  ],
 
   dressCode: {
     intro:

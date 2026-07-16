@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroAtmosphere } from "@/components/home/HeroAtmosphere";
 import { PhotoMarquee } from "@/components/home/PhotoMarquee";
+import { getGalleryPhotos, shufflePhotos } from "@/lib/gallery";
+
+export const dynamic = "force-dynamic";
 
 function OrnamentRule() {
   return (
@@ -16,6 +20,8 @@ function OrnamentRule() {
 }
 
 export default function Home() {
+  const photos = shufflePhotos(getGalleryPhotos());
+
   return (
     <>
       <section className="relative flex min-h-[calc(100svh-5.5rem)] items-center justify-center overflow-hidden px-5 py-24 text-center sm:px-8">
@@ -86,13 +92,23 @@ export default function Home() {
             <p className="eyebrow text-crimson">Explore</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">Through the years</h2>
             <p className="mt-3 text-sm font-light text-ink-soft">
-              A glimpse of Usha&apos;s life — more photos coming soon.
+              A glimpse of Usha&apos;s life with family and friends.
             </p>
           </div>
         </Reveal>
         <div className="mt-10">
-          <PhotoMarquee photos={site.homeMarquee} />
+          <PhotoMarquee photos={photos} />
         </div>
+        {photos.length > 0 && (
+          <div className="mt-10 flex justify-center px-5">
+            <Link
+              href="/gallery"
+              className="text-sm font-normal uppercase tracking-[0.14em] text-crimson underline decoration-crimson-soft/50 underline-offset-4 transition-colors hover:decoration-crimson"
+            >
+              See all photos
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

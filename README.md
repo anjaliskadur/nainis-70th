@@ -64,6 +64,10 @@ If the project already had an older `memories` table, run [`supabase/migration-m
 
 Without `.env.local`, the site still builds and shows sample/mock content.
 
+## Photo gallery
+
+Drop images into [`public/gallery/`](public/gallery/). The home marquee and `/gallery` page auto-load every `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, or `.avif` in that folder. The marquee order is shuffled on each visit.
+
 ## Editing content
 
 All copy lives in one place: [`src/content/site.ts`](src/content/site.ts).
