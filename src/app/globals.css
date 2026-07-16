@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/*
+  Quiet luxury invitation palette.
+  Ivory + soft pearl whites, muted rose accents, champagne hairlines.
+  No yellow fills.
+*/
+@theme {
+  --color-ivory: #fbfaf8;
+  --color-cream: #ffffff;
+  --color-mist: #f4f1ee;
+  --color-blush: #f8f0f1;
+
+  /* Soft rose accent */
+  --color-crimson: #c96d76;
+  --color-crimson-deep: #b05760;
+  --color-crimson-soft: #e2b0b5;
+
+  /* Soft pewter — lines and ornaments only (no yellow) */
+  --color-gold: #9c9084;
+  --color-gold-soft: #d5cfc7;
+
+  --color-ink: #2f2b27;
+  --color-ink-soft: #7a736c;
+
+  --font-display: var(--font-display), "Georgia", serif;
+  --font-sans: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-luxe: 0 32px 80px -40px rgba(47, 43, 39, 0.22);
+  --shadow-card: 0 10px 32px -20px rgba(47, 43, 39, 0.1);
+}
+
+:root {
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-crimson-soft);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .rule-soft {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-gold-soft),
+      transparent
+    );
+  }
+
+  /* Small diamond ornament used as a luxury divider accent */
+  .ornament {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    rotate: 45deg;
+    background: var(--color-gold);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3%, -5%) scale(1.04);
+  }
+}
+
+@keyframes float-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, 4%) scale(0.97);
+  }
+}
+
+.orb-float-a {
+  animation: float-a 16s ease-in-out infinite;
+}
+.orb-float-c {
+  animation: float-c 18s ease-in-out infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 48s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .orb-float-a,
+  .orb-float-c,
+  .marquee-track {
+    animation: none !important;
+  }
+}
