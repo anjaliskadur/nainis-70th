@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { site } from "@/content/site";
 import { Nav } from "@/components/layout/Nav";
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Footer />
         <SurpriseModal />
         <UnderConstructionModal />
+        <SpeedInsights />
       </body>
     </html>
   );
