@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroAtmosphere } from "@/components/home/HeroAtmosphere";
+import { FilmTapeMarquee } from "@/components/home/FilmTapeMarquee";
 import { PhotoMarquee } from "@/components/home/PhotoMarquee";
 import { getGalleryPhotos, shufflePhotos } from "@/lib/gallery";
 
@@ -21,30 +22,35 @@ function OrnamentRule() {
 
 export default function Home() {
   const photos = shufflePhotos(getGalleryPhotos());
+  // Slightly offset order so top/bottom strips don't look identical.
+  const bottomPhotos = [...photos.slice(Math.floor(photos.length / 3)), ...photos.slice(0, Math.floor(photos.length / 3))];
 
   return (
     <>
-      <section className="relative flex min-h-[calc(100svh-5.5rem)] items-center justify-center overflow-hidden px-5 py-24 text-center sm:px-8">
+      <section className="relative flex min-h-[calc(100svh-5.5rem)] flex-col justify-center overflow-hidden text-center">
         <HeroAtmosphere />
-        <div className="relative z-10 mx-auto max-w-2xl">
+        <div className="relative z-10">
+          <FilmTapeMarquee photos={photos} direction="left" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-2xl px-5 py-7 sm:px-8 sm:py-8">
           <p className="eyebrow text-crimson">You&apos;re Invited</p>
-          <h1 className="mt-7 text-balance text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 text-balance text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl">
             {site.event.title}
           </h1>
-          <div className="mt-8">
+          <div className="mt-6">
             <OrnamentRule />
           </div>
-          <p className="mt-7 text-sm font-normal tracking-[0.22em] text-ink-soft uppercase">
+          <p className="mt-5 text-sm font-normal tracking-[0.22em] text-ink-soft uppercase">
             {site.event.date}
             <span className="mx-3 text-gold" aria-hidden="true">
               ·
             </span>
             {site.event.city}
           </p>
-          <p className="mx-auto mt-6 max-w-md text-[0.95rem] font-light leading-relaxed text-ink-soft sm:text-base">
+          <p className="mx-auto mt-5 max-w-md text-[0.95rem] font-light leading-relaxed text-ink-soft sm:text-base">
             {site.event.tagline}
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href={site.rsvp.url} external size="lg" className="w-full sm:w-auto">
               {site.rsvp.label}
             </Button>
@@ -57,6 +63,9 @@ export default function Home() {
               Memory Wall
             </Button>
           </div>
+        </div>
+        <div className="relative z-10">
+          <FilmTapeMarquee photos={bottomPhotos} direction="right" />
         </div>
       </section>
 

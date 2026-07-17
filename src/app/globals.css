@@ -141,6 +141,10 @@
   animation: marquee-scroll var(--marquee-duration, 48s) linear infinite;
 }
 
+.marquee-track-reverse {
+  animation: marquee-scroll var(--marquee-duration, 48s) linear infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -153,7 +157,8 @@
 
   .orb-float-a,
   .orb-float-c,
-  .marquee-track {
+  .marquee-track,
+  .marquee-track-reverse {
     animation: none !important;
   }
 }
